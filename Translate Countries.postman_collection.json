@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "62d572ec-0adf-4948-8bd5-5ed22da2bccb",
+		"name": "Translate Countries",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31625346"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Read Data from Excel Sheet\r",
+							"var excelData =pm.iterationData.get('translation');\r",
+							"pm.variables.set('translation', excelData);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://restcountries.com/v3.1/translation/{{translation}}",
+					"protocol": "https",
+					"host": [
+						"restcountries",
+						"com"
+					],
+					"path": [
+						"v3.1",
+						"translation",
+						"{{translation}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
